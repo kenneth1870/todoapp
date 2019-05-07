@@ -3,20 +3,24 @@ const app = express ();
 const bodyParser = require ('body-parser');
 const cors = require ('cors');
 const mongoose = require ('mongoose');
+const passport = require ('passport');
 const todoRoutes = express.Router ();
 const PORT = 4000;
+const config = require ('./db');
 
-let Todo = require ('./todo.model');
+let Todo = require('./models/todo.model.js');
 
 app.use (cors ());
 app.use (bodyParser.json ());
 
-mongoose.connect ('mongodb://127.0.0.1:27017/todos', {useNewUrlParser: true});
-const connection = mongoose.connection;
-
-connection.once ('open', function () {
-  console.log ('MongoDB database connection established successfully');
-});
+mongoose.connect (config.DB, {useNewUrlParser: true}).then (
+  () => {
+    console.log ('Database is connected');
+  },
+  err => {
+    console.log ('Can not connect to the database' + err);
+  }
+);
 
 todoRoutes.route ('/').get (function (req, res) {
   Todo.find (function (err, todos) {
