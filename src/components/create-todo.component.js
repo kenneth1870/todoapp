@@ -82,7 +82,7 @@ export default class CreateTodo extends Component {
               />
             </div>
             <div className="form-group">
-              <label>Responsible: </label>
+              <label>Responsable: </label>
               <input
                 type="text"
                 className="form-control"
@@ -129,12 +129,12 @@ export default class CreateTodo extends Component {
               </div>
             </div>
             <div className="form-group">
+              <button className="btn"><Link to="/">← Back</Link></button> &nbsp;&nbsp;&nbsp;
               <input
                 type="submit"
                 value="Create Todo"
-                className="btn btn-primary"
+                className="btn"
               />
-              <Link to="/">Back</Link>
             </div>
           </form>
         </div>
