@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
 export default class EditTodo extends Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
 
-    this.onChangeTodoDescription = this.onChangeTodoDescription.bind (this);
-    this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind (this);
-    this.onChangeTodoPriority = this.onChangeTodoPriority.bind (this);
-    this.onChangeTodoCompleted = this.onChangeTodoCompleted.bind (this);
-    this.onSubmit = this.onSubmit.bind (this);
+    this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
+    this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
+    this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
+    this.onChangeTodoCompleted = this.onChangeTodoCompleted.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       todo_description: '',
@@ -19,48 +19,48 @@ export default class EditTodo extends Component {
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     axios
-      .get ('http://localhost:4000/todos/' + this.props.match.params.id)
-      .then (response => {
-        this.setState ({
+      .get('http://localhost:4000/api/todos/' + this.props.match.params.id)
+      .then(response => {
+        this.setState({
           todo_description: response.data.todo_description,
           todo_responsible: response.data.todo_responsible,
           todo_priority: response.data.todo_priority,
           todo_completed: response.data.todo_completed,
         });
       })
-      .catch (function (error) {
-        console.log (error);
+      .catch(function (error) {
+        console.log(error);
       });
   }
 
-  onChangeTodoDescription (e) {
-    this.setState ({
+  onChangeTodoDescription(e) {
+    this.setState({
       todo_description: e.target.value,
     });
   }
 
-  onChangeTodoResponsible (e) {
-    this.setState ({
+  onChangeTodoResponsible(e) {
+    this.setState({
       todo_responsible: e.target.value,
     });
   }
 
-  onChangeTodoPriority (e) {
-    this.setState ({
+  onChangeTodoPriority(e) {
+    this.setState({
       todo_priority: e.target.value,
     });
   }
 
-  onChangeTodoCompleted (e) {
-    this.setState ({
+  onChangeTodoCompleted(e) {
+    this.setState({
       todo_completed: !this.state.todo_completed,
     });
   }
 
-  onSubmit (e) {
-    e.preventDefault ();
+  onSubmit(e) {
+    e.preventDefault();
     const obj = {
       todo_description: this.state.todo_description,
       todo_responsible: this.state.todo_responsible,
@@ -68,16 +68,13 @@ export default class EditTodo extends Component {
       todo_completed: this.state.todo_completed,
     };
     axios
-      .post (
-        'http://localhost:4000/todos/update/' + this.props.match.params.id,
-        obj
-      )
-      .then (res => console.log (res.data));
+      .put('http://localhost:4000/api/todos/' + this.props.match.params.id, obj)
+      .then(res => console.log(res.data));
 
-    this.props.history.push ('/');
+    this.props.history.push('/');
   }
 
-  render () {
+  render() {
     return (
       <div>
         <h3>Update Todo</h3>

@@ -13,8 +13,6 @@ class App extends Component {
       <Router>
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="https://codingthesmartway.com" target="_blank">
-            </a>
             <Link to="/" className="navbar-brand">Todo App</Link>
             <div className="collpase navbar-collapse">
               <ul className="navbar-nav mr-auto">
