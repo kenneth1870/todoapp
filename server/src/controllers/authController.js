@@ -29,7 +29,7 @@ function authController(User) {
             name: user.name
           }
           jwt.sign(payload, 'secret', {
-            expiresIn: 3600
+            expiresIn: 600000
           }, (err, token) => {
             if (err) console.error('There is some error in token', err);
             else {
