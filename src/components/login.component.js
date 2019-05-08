@@ -39,7 +39,7 @@ export default class Login extends Component {
           localStorage.setItem('jwtToken', token);
           console.log(token);
           setAuthToken(token);
-          this.props.history.push('/');
+          this.props.history.push('/list');
         }
       })
       .catch(error => {

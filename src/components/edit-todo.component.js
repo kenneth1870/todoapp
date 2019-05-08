@@ -71,7 +71,7 @@ export default class EditTodo extends Component {
       .put('http://localhost:4000/api/todos/' + this.props.match.params.id, obj)
       .then(res => console.log(res.data));
 
-    this.props.history.push('/');
+    this.props.history.push('/list');
   }
 
   render() {
