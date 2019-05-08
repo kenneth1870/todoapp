@@ -14,14 +14,7 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true,
-  },
-  avatar: {
-    type: String,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
+  }
 });
 
 const User = mongoose.model('users', UserSchema);
