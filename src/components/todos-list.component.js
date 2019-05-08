@@ -3,20 +3,21 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Todo = props => (
-  <tr>
-    <td className={props.todo.todo_completed ? 'completed' : ''}>
-      {props.todo.todo_description}
-    </td>
-    <td className={props.todo.todo_completed ? 'completed' : ''}>
-      {props.todo.todo_responsible}
-    </td>
-    <td className={props.todo.todo_completed ? 'completed' : ''}>
-      {props.todo.todo_priority}
-    </td>
-    <td>
-      <Link to={'/edit/' + props.todo._id}>Edit</Link>
-    </td>
-  </tr>
+  <div className="container">
+    <div className="row">
+      <div className="btn-group" role="group" aria-label="Basic example">
+        <button type="button" className="btn">
+          {props.todo.todo_completed ? 'Undo' : 'Complete'}
+        </button>
+        <button type="button" className="btn">Delete</button>
+      </div>
+      <h3 style={{textDecoration: props.todo.todo_completed ? 'line-through' : 'none'}}>
+        {props.todo.todo_description}
+      </h3>
+
+      <Link to={'/edit/' + props.todo._id}><i className="fa fa-edit"></i></Link>
+    </div>
+  </div>
 );
 
 export default class TodosList extends Component {
@@ -55,22 +56,12 @@ export default class TodosList extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Todos List</h3>
-        <table className="table table-striped" style={{ marginTop: 20 }}>
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th>Responsible</th>
-              <th>Priority</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.todoList()}
-          </tbody>
-        </table>
-      </div>
+      <section id="one" className="wrapper style2 special flow">
+        <header className="major">
+          <h2>Let's get some work done!</h2>
+        </header>
+        {this.todoList ()}
+      </section>
     );
   }
 }
