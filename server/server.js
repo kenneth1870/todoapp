@@ -5,7 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-const todoRouter = require('./routes/todoRoutes');
+const todoRouter = require('./src/routes/todoRoutes');
 const config = require('./db');
 const port = process.env.PORT || 4000;
 
