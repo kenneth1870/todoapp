@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
 export default class CreateTodo extends Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
 
-    this.onChangeTodoDescription = this.onChangeTodoDescription.bind (this);
-    this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind (this);
-    this.onChangeTodoPriority = this.onChangeTodoPriority.bind (this);
-    this.onSubmit = this.onSubmit.bind (this);
+    this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
+    this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
+    this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       todo_description: '',
@@ -18,32 +18,32 @@ export default class CreateTodo extends Component {
     };
   }
 
-  onChangeTodoDescription (e) {
-    this.setState ({
+  onChangeTodoDescription(e) {
+    this.setState({
       todo_description: e.target.value,
     });
   }
 
-  onChangeTodoResponsible (e) {
-    this.setState ({
+  onChangeTodoResponsible(e) {
+    this.setState({
       todo_responsible: e.target.value,
     });
   }
 
-  onChangeTodoPriority (e) {
-    this.setState ({
+  onChangeTodoPriority(e) {
+    this.setState({
       todo_priority: e.target.value,
     });
   }
 
-  onSubmit (e) {
-    e.preventDefault ();
+  onSubmit(e) {
+    e.preventDefault();
 
-    console.log (`Form submitted:`);
-    console.log (`Todo Description: ${this.state.todo_description}`);
-    console.log (`Todo Responsible: ${this.state.todo_responsible}`);
-    console.log (`Todo Priority: ${this.state.todo_priority}`);
-    console.log (`Todo Completed: ${this.state.todo_completed}`);
+    console.log(`Form submitted:`);
+    console.log(`Todo Description: ${this.state.todo_description}`);
+    console.log(`Todo Responsible: ${this.state.todo_responsible}`);
+    console.log(`Todo Priority: ${this.state.todo_priority}`);
+    console.log(`Todo Completed: ${this.state.todo_completed}`);
 
     const newTodo = {
       todo_description: this.state.todo_description,
@@ -53,10 +53,10 @@ export default class CreateTodo extends Component {
     };
 
     axios
-      .post ('http://localhost:4000/todos/add', newTodo)
-      .then (res => console.log (res.data));
+      .post('http://localhost:4000/api/todos', newTodo)
+      .then(res => console.log(res.data));
 
-    this.setState ({
+    this.setState({
       todo_description: '',
       todo_responsible: '',
       todo_priority: '',
@@ -64,9 +64,9 @@ export default class CreateTodo extends Component {
     });
   }
 
-  render () {
+  render() {
     return (
-      <div style={{marginTop: 20}}>
+      <div style={{ marginTop: 20 }}>
         <h3>Create New</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
