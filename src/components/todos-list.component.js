@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Todo = props => (
@@ -21,40 +21,40 @@ const Todo = props => (
 );
 
 export default class TodosList extends Component {
-  constructor (props) {
-    super (props);
-    this.state = {todos: []};
+  constructor(props) {
+    super(props);
+    this.state = { todos: [] };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     axios
-      .get ('http://localhost:4000/todos/')
-      .then (response => {
-        this.setState ({todos: response.data});
+      .get('http://localhost:4000/api/todos/')
+      .then(response => {
+        this.setState({ todos: response.data });
       })
-      .catch (function (error) {
-        console.log (error);
+      .catch(function (error) {
+        console.log(error);
       });
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     axios
-      .get ('http://localhost:4000/todos/')
-      .then (response => {
-        this.setState ({todos: response.data});
+      .get('http://localhost:4000/api/todos/')
+      .then(response => {
+        this.setState({ todos: response.data });
       })
-      .catch (function (error) {
-        console.log (error);
+      .catch(function (error) {
+        console.log(error);
       });
   }
 
-  todoList () {
-    return this.state.todos.map (function (currentTodo, i) {
+  todoList() {
+    return this.state.todos.map(function (currentTodo, i) {
       return <Todo todo={currentTodo} key={i} />;
     });
   }
 
-  render () {
+  render() {
     return (
       <section id="one" className="wrapper style2 special flow">
         <header className="major">
