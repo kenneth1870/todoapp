@@ -1,10 +1,12 @@
-import React, {Component} from 'react';
-import {Button, FormGroup, FormControl, FormLabel} from 'react-bootstrap';
-import {BrowserRouter as Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import axios from 'axios';
+import setAuthToken from '../components/setAuthToken';
+import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 export default class Login extends Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
 
     this.state = {
       email: '',
@@ -12,21 +14,40 @@ export default class Login extends Component {
     };
   }
 
-  validateForm () {
+  validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
   handleChange = event => {
-    this.setState ({
+    this.setState({
       [event.target.id]: event.target.value,
     });
   };
 
-  handleSubmit = event => {
-    event.preventDefault ();
+  handleSubmit = e => {
+    e.preventDefault();
+
+    let user = {
+      email: this.state.email,
+      password: this.state.password,
+    }
+
+    axios.post('http://localhost:4000/api/auth/signIn', user)
+      .then(res => {
+        if (res.status === 200) {
+          let { token } = res.data;
+          localStorage.setItem('jwtToken', token);
+          console.log(token);
+          setAuthToken(token);
+          this.props.history.push('/');
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
-  render () {
+  render() {
     return (
       <div className="center-content">
         <div className="col-md-10">
@@ -51,13 +72,13 @@ export default class Login extends Component {
               </FormGroup>
               <Button
                 block
-                disabled={!this.validateForm ()}
+                disabled={!this.validateForm()}
                 type="submit">
                 Login
               </Button>
             </form>
           </div>
-          <Link to="/signup" className="nav-link"><button>Signup</button></Link>
+          <Link to="/signUp" className="nav-link"><button>Signup</button></Link>
         </div>
       </div>
     );

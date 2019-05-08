@@ -1,32 +1,51 @@
-import React, {Component} from 'react';
-import {Button, FormGroup, FormControl, FormLabel} from 'react-bootstrap';
-import {BrowserRouter as Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 export default class Signup extends Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
 
     this.state = {
       email: '',
       password: '',
+      name: ''
     };
   }
 
-  validateForm () {
+  validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
   handleChange = event => {
-    this.setState ({
+    this.setState({
       [event.target.id]: event.target.value,
     });
   };
 
-  handleSubmit = event => {
-    event.preventDefault ();
+  handleSubmit = e => {
+    e.preventDefault();
+
+    let user = {
+      email: this.state.email,
+      password: this.state.password,
+      name: this.state.name
+    }
+
+    axios
+      .post('http://localhost:4000/api/auth/signUp', user)
+      .then(res => {
+        if (res.status === 200) {
+          alert('User created succesfullyW! :D');
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
-  render () {
+  render() {
     return (
       <div className="center-content">
         <div className="col-md-10">
@@ -60,7 +79,7 @@ export default class Signup extends Component {
               </FormGroup>
               <Button
                 block
-                disabled={!this.validateForm ()}
+                disabled={!this.validateForm()}
                 type="submit">
                 Signup
               </Button>

@@ -7,7 +7,7 @@ import EditTodo from './components/edit-todo.component';
 import TodosList from './components/todos-list.component';
 import Footer from './components/footer.component';
 import Login from './components/login.component';
-import Signup from './components/./signup.component';
+import Signup from './components/signup.component';
 
 class App extends Component {
   render () {
@@ -25,7 +25,7 @@ class App extends Component {
           <Route path="/login" exact component={Login} />
           <Route path="/edit/:id" component={EditTodo} />
           <Route path="/create" component={CreateTodo} />
-          <Route path="/signup" exact component={Signup} />
+          <Route path="/signUp" exact component={Signup} />
           <Footer />
 
         </div>

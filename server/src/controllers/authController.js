@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 function authController(User) {
   function signUp(req, res) {
+    console.log(req);
     let user = new User(req.body);
     user.save().then(user => {
         res.status(200).json({ user: 'user created successfully' });
