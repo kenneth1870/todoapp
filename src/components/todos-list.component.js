@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from 'axios'
 
 const Todo = props => (
   <div className="container">
@@ -11,7 +11,7 @@ const Todo = props => (
         </button>
         <button type="button" className="btn">Delete</button>
       </div>
-      <h3 style={{textDecoration: props.todo.todo_completed ? 'line-through' : 'none'}}>
+      <h3 style={{ textDecoration: props.todo.todo_completed ? 'line-through' : 'none' }}>
         {props.todo.todo_description}
       </h3>
 
@@ -32,8 +32,11 @@ export default class TodosList extends Component {
       .then(response => {
         this.setState({ todos: response.data });
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch((error) => {
+        console.log(error.response)
+        if (error.response.status === 401) {
+          this.props.history.push('/login');
+        }
       });
   }
 
@@ -60,7 +63,7 @@ export default class TodosList extends Component {
         <header className="major">
           <h2>Let's get some work done!</h2>
         </header>
-        {this.todoList ()}
+        {this.todoList()}
       </section>
     );
   }

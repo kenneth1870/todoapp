@@ -71,7 +71,7 @@ export default class EditTodo extends Component {
       .put('http://localhost:4000/api/todos/' + this.props.match.params.id, obj)
       .then(res => console.log(res.data));
 
-    this.props.history.push('/');
+    this.props.history.push('/list');
   }
 
   render() {
@@ -89,7 +89,7 @@ export default class EditTodo extends Component {
               />
             </div>
             <div className="form-group">
-              <label>Responsible: </label>
+              <label>Responsable: </label>
               <input
                 type="text"
                 className="form-control"
@@ -154,7 +154,7 @@ export default class EditTodo extends Component {
                 <input
                   type="submit"
                   value="Update Todo"
-                  className="btn btn-primary"
+                  className="btn"
                 />
               </div>
             </div>
