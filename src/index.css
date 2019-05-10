@@ -3905,8 +3905,8 @@ table.alt tbody tr td {
   background-position: top left, center center;
   background-attachment: fixed, fixed;
   background-size: auto, cover;
-  height: 50vh;
-  min-height: 25em;
+  height: 20vh;
+  min-height: 15em;
 }
 
 #header input[type="submit"],
@@ -4461,6 +4461,9 @@ img {
 }
 
 .center-content {
+  margin-top: 1% !important;
   width: 50%;
   margin: 0 auto;
+  height: 52vh;
+  min-height: 52vh;
 }
