@@ -39,6 +39,7 @@ export default class Signup extends Component {
         if (res.status === 200) {
           alert('User created succesfullyW! :D');
         }
+        this.props.history.push('/list');
       })
       .catch(error => {
         console.log(error);
@@ -51,15 +52,6 @@ export default class Signup extends Component {
         <div className="col-md-10">
           <div className="Signup">
             <form onSubmit={this.handleSubmit}>
-              <FormGroup controlId="email" >
-                <FormLabel>Email</FormLabel>
-                <FormControl
-                  autoFocus
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                />
-              </FormGroup>
               <FormGroup controlId="name" >
                 <FormLabel>Name</FormLabel>
                 <FormControl
@@ -68,6 +60,14 @@ export default class Signup extends Component {
                   value={this.state.name}
                   onChange={this.handleChange}
                 />
+              <FormGroup controlId="email" >
+                <FormLabel>Email</FormLabel>
+                <FormControl
+                  type="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
               </FormGroup>
               <FormGroup controlId="password" >
                 <FormLabel>Password</FormLabel>
@@ -85,7 +85,10 @@ export default class Signup extends Component {
               </Button>
             </form>
           </div>
-          <Link to="/login" className="nav-link"><button>Login</button></Link>
+          <hr/>
+        <Link to="/login" className="nav-link">
+          Login
+        </Link>
         </div>
       </div>
     );

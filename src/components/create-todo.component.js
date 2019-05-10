@@ -63,7 +63,7 @@ export default class CreateTodo extends Component {
       todo_priority: '',
       todo_completed: false,
     });
-    this.props.history.push ('/');
+    this.props.history.push ('/list');
   }
 
   render() {
@@ -129,7 +129,7 @@ export default class CreateTodo extends Component {
               </div>
             </div>
             <div className="form-group">
-              <button className="btn"><Link to="/">← Back</Link></button> &nbsp;&nbsp;&nbsp;
+              <button className="btn"><Link to="/list">← Back</Link></button> &nbsp;&nbsp;&nbsp;
               <input
                 type="submit"
                 value="Create Todo"
